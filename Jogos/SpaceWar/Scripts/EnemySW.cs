@@ -47,23 +47,26 @@ public class EnemySW : MonoBehaviour
             } 
             else
             {
-                if(transform.position.x > horizontalLimit || transform.position.x < -horizontalLimit)
+                if((transform.position.x > horizontalLimit && horizontalSpeed > 0) || (transform.position.x < -horizontalLimit && horizontalSpeed < 0)) 
                 {
-                    horizontalSpeed *= -1; 
-                    GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
-                }
+                    horizontalSpeed *=-1;
+                    GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, - verticalSpeed, 0f);
+                } 
             }
 
             if(shoot)
             {
                 if(shootTimer <=0)
                 {
-                    GameObject projectileInstance = Instantiate(projectile.gameObject, transform);
-                    projectileInstance.transform.position = transform.position;
-                    projectileInstance.transform.SetParent(this.transform.parent);
+                    if(Random.Range(0f,100f)>60f)
+                    {
+                        GameObject projectileInstance = Instantiate(projectile.gameObject, transform);
+                        projectileInstance.transform.position = transform.position;
+                        projectileInstance.transform.SetParent(this.transform.parent);
 
-                    projectileInstance.GetComponent<projectileSW>().speed*=-1; 
-                    shootTimer = projectileInstance.GetComponent<projectileSW>().shootCooldown; 
+                        projectileInstance.GetComponent<projectileSW>().speed*=-1; 
+                    }
+                    shootTimer = projectile.GetComponent<projectileSW>().shootCooldown; 
                 }
                 shootTimer-=Time.deltaTime;
 
@@ -116,5 +119,11 @@ public class EnemySW : MonoBehaviour
             explosion.transform.position = transform.position;
             Destroy(explosion, 3);
         }  
+
+        if(other.tag == "EnemySW" && !kamikase)
+        {
+            horizontalSpeed *= -1;
+            GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
+        }
     }
 }

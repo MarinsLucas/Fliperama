@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1c3c6bce5556e44b25bd8e9c152ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 4
   verticalLimit: 5
   damage: 5
-  shootCooldown: 0.25
+  shootCooldown: 2
