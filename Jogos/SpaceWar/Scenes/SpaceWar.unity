@@ -655,9 +655,9 @@ MonoBehaviour:
   shoot: 1
   projectilePrefab:
   - {fileID: 2419986642751579407, guid: fdc6ca2adf6af574b9ca88cfe3aee63b, type: 3}
-  - {fileID: 6616191345481904381, guid: 1720239ee4682b446a34c00edd806031, type: 3}
   - {fileID: 2419986642751579407, guid: 52db2be834e6b1d469f6fe665bd00b44, type: 3}
   explosionEffect: {fileID: 2851061376986672086, guid: 3e1cf2e8aa6d16a4f8c0c8e0c6c74220, type: 3}
+  hitEffect: {fileID: 0}
 --- !u!54 &979399166
 Rigidbody:
   m_ObjectHideFlags: 0

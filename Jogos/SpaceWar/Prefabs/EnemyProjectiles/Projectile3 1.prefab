@@ -127,5 +127,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   verticalLimit: 5
-  damage: 5
+  damage: 25
   shootCooldown: 2

@@ -15,6 +15,7 @@ public class PlayerSW : MonoBehaviour
     [Header("Componentes")]
     [SerializeField] GameObject[] projectilePrefab; 
     [SerializeField] GameObject explosionEffect;
+    [SerializeField] GameObject hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,9 @@ public class PlayerSW : MonoBehaviour
         if(other.tag == "EnemyProjectile")
         {
             TakeDamage(other.gameObject.GetComponent<projectileSW>().damage);
+            Destroy(other.gameObject);
+            GameObject hit = Instantiate(hitEffect,transform);
+            hit.transform.position = transform.position; 
         }
     }
 }
