@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Script responsável pela movimentação de todos os elementos presentes no cenário do jogo
+    Adiciona velocidade no objeto quando iniciado e destroy o objeto quando ele sai da tela
+*/
+
 public class BackGround : MonoBehaviour
 {
     public float speed;
