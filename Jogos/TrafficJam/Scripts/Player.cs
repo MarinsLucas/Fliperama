@@ -5,19 +5,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Variáveis do Carro")]
-    public GameObject mesh;
-    public float speed;
-    public float maxRotationCar;
+    public GameObject mesh; //modelo do carro
+    public float speed; //velocidade lateral
+    public float maxRotationCar; //limite de rotação para o movimento do carro
 
     [Header("Variáveis do Pneu")]
-    public float rotation;
-    public float rotationSpeed;
+    public float rotation; //valor máximo de rotação para a roda do carro
+    public float rotationSpeed; //velocidade de rotação para a roda do carro
 
     [Header("Variáveis do Limite")]
-    public float horizontalLimit; 
+    public float horizontalLimit; //Valor do limite vertical
 
+    //Objetos de rodas
     GameObject FL; 
     GameObject FR;
+    //Variáveis para a rotação do carro
     float rotationY;
     float carRotation; 
 
@@ -25,8 +27,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        instance = this; 
-
+        instance = this; //???
+        
+        //Instanciando o modelo do carro
         GameObject carInstance = Instantiate(mesh, transform);
         carInstance.transform.position = transform.position;
 
@@ -38,18 +41,21 @@ public class Player : MonoBehaviour
             if(transform.GetChild(0).transform.GetChild(i).gameObject.name == "FR")
                 FR = transform.GetChild(0).transform.GetChild(i).gameObject;
         }
-        if(FL == null || FR == null) Debug.Log("ERRO! Pneus não encontrados"); //depuração para diferentes tipos de veiculos
+        if(FL == null || FR == null) Debug.Log("ERRO! Pneus não encontrados"); //depuração para testar diferentes tipos de veiculos
     }
 
     void Update()
     {
+        //Input do axis horizontal
         int x = 0; 
         if(Input.GetAxis("Horizontal")>0) x=1;
         if(Input.GetAxis("Horizontal")<0) x=-1; 
-
+        
+        //Limite horizontal: zerando o valor de x
         if(transform.position.x>horizontalLimit && x>0) x=0; 
         else if(transform.position.x<-horizontalLimit && x<0) x=0;
         
+        //Movimentação do player
         if(x!=0)
         {   
             rotationY = Mathf.Lerp(rotationY, x > 0 ? rotation : -rotation, Time.deltaTime*rotationSpeed);
