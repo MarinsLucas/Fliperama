@@ -13,6 +13,8 @@ public class CarSpawner : MonoBehaviour
     {
         spawnTimer = spawnInterval;
     }
+    
+    //função que spawna o carro
     void SpawnCar(Car car, CarSpawnerPosition p, int index)
     {
         GameObject carInstance = Instantiate(car.gameObject, this.gameObject.transform.parent);
@@ -46,6 +48,7 @@ public class CarSpawner : MonoBehaviour
             spawnTimer = spawnInterval; 
         }
         spawnTimer -= Time.deltaTime;
+        //voltando todas as posições para o valor nulo
         pos[0].car = null;
         pos[1].car = null; 
         pos[2].car = null; 
