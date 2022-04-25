@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    public Gradient grad;
-    public float speed; 
-    Renderer rend; 
-    public float bottomLimit;
+    //TODO: Fazer o carro ser destruído quando for para frente também
+    
+    public Gradient grad; //gradiente de cores possíveis
+    public float speed; //velocidade vertical do carro
+    Renderer rend;
+    public float bottomLimit; //final da estrada (onde o carro é destruído)
     public short index; 
 
-    public float timeToOvertake;
- 
+    public float timeToOvertake; //Tempo em que a velocidade se altera durante a ultrapassagem
+    
+    //variáveis para a ultrapassagem
     public bool isOvertaking;
     float signing = 0.3f; 
     bool movingHorizontal; 
 
+    //setas de direção
     public GameObject signs;
     bool p; 
     
     void Start()
     {
+        //colore o carro aleatóriamente de acordo com o gradiente
         rend = gameObject.GetComponentInChildren<Renderer>();
-        rend.material.color = grad.Evaluate(Random.Range(0f, 100f)/100f); 
+        rend.material.color = grad.Evaluate(Random.Range(0f, 100f)/100f);
 
+        //movimento inicial do carro
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed); 
 
         isOvertaking = false; 
@@ -32,11 +38,14 @@ public class Car : MonoBehaviour
 
     void Update()
     {
+        //limite vertical
         if(transform.position.z < 0f)
             Destroy(gameObject);
         
+        //Secção da ultrapassagem
         if(isOvertaking)
         {
+            //sistema de setas
             if(signing >= 0.3f)
             {
                 p = !p;
@@ -44,6 +53,8 @@ public class Car : MonoBehaviour
                 signing = 0f; 
             }
             signing += Time.deltaTime/Time.timeScale; 
+            
+            //finalizando a ultrapassagem
             if(movingHorizontal)
             {
                 if(index==1)
@@ -60,6 +71,7 @@ public class Car : MonoBehaviour
                 }
             }
         }
+        //inverte a direção do movimento dos carros das faixas da direita
         if(!GameManager.instance.isRunning)
         {
             if(index>=2) GetComponent<Rigidbody>().velocity = new Vector3(0,0,speed*2);
@@ -67,6 +79,7 @@ public class Car : MonoBehaviour
         }
         
     }
+    
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Player")
@@ -84,7 +97,8 @@ public class Car : MonoBehaviour
             }
         }
     }
-
+    
+    //observação do sensor do controle de tráfico para as ultrapassagens
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "TrafficControl")
@@ -99,7 +113,8 @@ public class Car : MonoBehaviour
             other.gameObject.GetComponent<TrafficSensor>().car = null; 
         }
     }
-
+    
+    
     IEnumerator StopOvertaking()
     {
         //avança em linha reta
@@ -113,7 +128,8 @@ public class Car : MonoBehaviour
         signs.SetActive(false);
         p = false; 
     }
-
+    
+    //altera temporariamente a velocidade durante a ultrapassagem
     public void Overtake()
     {
         if(index==1)
