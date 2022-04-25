@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+    Script que define o movimento de um arbustinho que roda pelo cenário
+*/
 public class Bush : MonoBehaviour
 {
     public float speed; 
