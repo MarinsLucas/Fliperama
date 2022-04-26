@@ -42,8 +42,10 @@ public class EnemySW : MonoBehaviour
             if(follow && GameManagerSW.instance.player != null)
             {
                 if(transform.position.x > GameManagerSW.instance.player.transform.position.x || transform.position.x < GameManagerSW.instance.player.transform.position.x )
-                transform.position =  Vector3.MoveTowards(transform.position, new Vector3(GameManagerSW.instance.player.transform.position.x, transform.position.y, transform.position.z), horizontalSpeed/2);
+                transform.position =  Vector3.MoveTowards(transform.position, new Vector3(GameManagerSW.instance.player.transform.position.x, transform.position.y, transform.position.z), horizontalSpeed/10);
             } 
+            else if(kamikase)
+                GetComponent<Rigidbody>().velocity = new Vector3(0f, -verticalSpeed, 0f);
             else
             {
                 if((transform.position.x > horizontalLimit && horizontalSpeed > 0) || (transform.position.x < -horizontalLimit && horizontalSpeed < 0)) 
@@ -124,6 +126,17 @@ public class EnemySW : MonoBehaviour
             horizontalSpeed *= -1;
             GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
         }
+
+        if(other.tag == "EnemySW" && kamikase)
+        {
+            follow = false; 
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "EnemySW" && kamikase)
+            follow = true; 
     }
 
     //FIXME: O kamikase está trepando em cima dos outros inimigos
