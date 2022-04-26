@@ -632,7 +632,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979399162}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10.000005, y: 0.537747, z: 10.000002}
@@ -657,7 +657,7 @@ MonoBehaviour:
   - {fileID: 2419986642751579407, guid: fdc6ca2adf6af574b9ca88cfe3aee63b, type: 3}
   - {fileID: 2419986642751579407, guid: 52db2be834e6b1d469f6fe665bd00b44, type: 3}
   explosionEffect: {fileID: 2851061376986672086, guid: 3e1cf2e8aa6d16a4f8c0c8e0c6c74220, type: 3}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 2851061376986672086, guid: d2fd924dc97c32f4ab23216017e7eceb, type: 3}
 --- !u!54 &979399166
 Rigidbody:
   m_ObjectHideFlags: 0
