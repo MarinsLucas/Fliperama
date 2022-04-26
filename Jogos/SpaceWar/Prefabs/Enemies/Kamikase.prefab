@@ -119,7 +119,7 @@ MonoBehaviour:
   horizontalLimit: 8.3
   offset: 1
   projectile: {fileID: 7758200493816454071, guid: 0bf26470914e4d548aa3e4ae166dc093, type: 3}
-  health: 25
+  health: 15
   points: 10
   shoot: 0
   follow: 1

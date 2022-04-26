@@ -120,7 +120,7 @@ MonoBehaviour:
   offset: 1
   projectile: {fileID: 1292042439097519685, guid: 103d154cd9b3e8e48ba6312763dc6308, type: 3}
   health: 25
-  points: 10
+  points: 20
   shoot: 1
   follow: 0
   kamikase: 0

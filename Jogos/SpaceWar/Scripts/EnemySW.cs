@@ -25,7 +25,6 @@ public class EnemySW : MonoBehaviour
     [SerializeField] bool follow; 
     [SerializeField] bool kamikase;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -126,4 +125,6 @@ public class EnemySW : MonoBehaviour
             GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
         }
     }
+
+    //FIXME: O kamikase está trepando em cima dos outros inimigos
 }
