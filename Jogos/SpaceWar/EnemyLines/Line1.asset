@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c647d07ea54053243893107f7aae65ed, type: 3}
   m_Name: Line1
   m_EditorClassIdentifier: 
-  quantKamikase: 6
+  quantKamikase: 3
   quantLines: 2

@@ -15,6 +15,7 @@ public class EnemySW : MonoBehaviour
     [SerializeField] float offset; 
     [SerializeField] projectileSW projectile;
     float shootTimer; 
+    float constHorizontalSpeed; 
 
     [Header("Parametros")]
     [SerializeField] float health;
@@ -31,6 +32,7 @@ public class EnemySW : MonoBehaviour
         GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
         if(shoot)
             shootTimer = projectile.shootCooldown;
+        constHorizontalSpeed = horizontalSpeed;
     }
 
     // Update is called once per frame
@@ -39,13 +41,16 @@ public class EnemySW : MonoBehaviour
         //if follow is true
         if(GameManagerSW.instance.isRunning)
         {
-            if(follow && GameManagerSW.instance.player != null)
+            if(GameManagerSW.instance.player != null && kamikase)
             {
-                if(transform.position.x > GameManagerSW.instance.player.transform.position.x || transform.position.x < GameManagerSW.instance.player.transform.position.x )
-                transform.position =  Vector3.MoveTowards(transform.position, new Vector3(GameManagerSW.instance.player.transform.position.x, transform.position.y, transform.position.z), horizontalSpeed/10);
+                if(GameManagerSW.instance.player.transform.position.x > transform.position.x && follow)
+                    horizontalSpeed = 1f;
+                else if(GameManagerSW.instance.player.transform.position.x < transform.position.x && follow)
+                    horizontalSpeed = -1f;
+                else if(GameManagerSW.instance.player.transform.position.x == transform.position.x || !follow)
+                    horizontalSpeed = 0f; 
+                GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
             } 
-            else if(kamikase)
-                GetComponent<Rigidbody>().velocity = new Vector3(0f, -verticalSpeed, 0f);
             else
             {
                 if((transform.position.x > horizontalLimit && horizontalSpeed > 0) || (transform.position.x < -horizontalLimit && horizontalSpeed < 0)) 
@@ -126,18 +131,17 @@ public class EnemySW : MonoBehaviour
             horizontalSpeed *= -1;
             GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
         }
-
+    }
+    void OnTriggerStay(Collider other) {
         if(other.tag == "EnemySW" && kamikase)
         {
-            follow = false; 
+            follow = false;
         }
     }
-
-    void OnTriggerExit(Collider other)
-    {
+    void OnTriggerExit(Collider other) {
         if(other.tag == "EnemySW" && kamikase)
-            follow = true; 
+        {
+            follow = true;
+        }
     }
-
-    //FIXME: O kamikase está trepando em cima dos outros inimigos
 }
