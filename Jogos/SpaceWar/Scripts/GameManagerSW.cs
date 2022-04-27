@@ -49,7 +49,7 @@ public class GameManagerSW : MonoBehaviour
     {
         if(player == null)
         {
-            isRunning = false; 
+            GameOver(); 
         }
         
         scoreText.text = score.ToString();
