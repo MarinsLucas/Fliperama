@@ -1483,6 +1483,9 @@ MonoBehaviour:
   - {fileID: 2032895048}
   data:
   - {fileID: 11400000, guid: 9c7c8a306106330438aa099e922bb9d7, type: 2}
+  - {fileID: 11400000, guid: 3eb3e8a5fc5caa14bb2ea653b9a2adf6, type: 2}
+  - {fileID: 11400000, guid: b56e84b15bc23454aa9ac5551851835e, type: 2}
+  - {fileID: 11400000, guid: b06a39dc061ee3a4c92d0ea85b1aa02a, type: 2}
   kamikasePrefab: {fileID: 6409357867458374810, guid: 5b2889918aa2866418f360acf9601b39, type: 3}
   normalPrefab: {fileID: 6409357867458374810, guid: 7bd10b96e511c81468ade247d9582402, type: 3}
 --- !u!114 &1529635241
