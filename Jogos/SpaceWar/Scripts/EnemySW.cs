@@ -151,7 +151,7 @@ public class EnemySW : MonoBehaviour
         }
     }
     //Analisando contato entre kamikases
-    void OnTriggerStay(Collider other) {
+    /* void OnTriggerStay(Collider other) {
         if(other.tag == "EnemySW" && kamikase)
         {
             follow = false;
@@ -162,5 +162,5 @@ public class EnemySW : MonoBehaviour
         {
             follow = true;
         }
-    }
+    } */
 }
