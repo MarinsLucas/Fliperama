@@ -14,6 +14,7 @@ public class GameManagerSW : MonoBehaviour
     public bool isRunning;
 
     public int score; 
+    int nextSuply = 100; 
 
     public PlayerSW player; 
 
@@ -40,9 +41,16 @@ public class GameManagerSW : MonoBehaviour
         Time.timeScale = 0f; 
     }
 
-    public void AddPoints(int points)
+    public bool AddPoints(int points)
     {
         score += points; 
+        nextSuply -= points;
+        if(nextSuply <= 0)
+        {
+            nextSuply = 100; 
+            return true;
+        }
+        return false; 
     }
 
     void Update()

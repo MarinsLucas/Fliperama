@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 2851061376986672086, guid: 3e1cf2e8aa6d16a4f8c0c8e0c6c74220, type: 3}
   hitEffect: {fileID: 2851061376986672086, guid: d2fd924dc97c32f4ab23216017e7eceb, type: 3}
+  suplyEffect: {fileID: 8876253780308166915, guid: 8780f2a47215a3949a76592aa7372bc5, type: 3}
   horizontalSpeed: 1
   verticalSpeed: 1
   horizontalLimit: 8.3

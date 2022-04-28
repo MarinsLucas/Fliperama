@@ -7,6 +7,7 @@ public class EnemySW : MonoBehaviour
     [Header("Componentes")]
     [SerializeField] GameObject explosionEffect; 
     [SerializeField] GameObject hitEffect; 
+    [SerializeField] GameObject suplyEffect;
 
     [Header("Variáveis")]
     [SerializeField] float horizontalSpeed; 
@@ -45,12 +46,12 @@ public class EnemySW : MonoBehaviour
             //Para o Kamikase: seguir o personagem
             if(GameManagerSW.instance.player != null && kamikase)
             {
-                if(GameManagerSW.instance.player.transform.position.x > transform.position.x && follow)
-                    horizontalSpeed = 1f;
-                else if(GameManagerSW.instance.player.transform.position.x < transform.position.x && follow)
-                    horizontalSpeed = -1f;
-                else if(GameManagerSW.instance.player.transform.position.x == transform.position.x || !follow)
+                if(GameManagerSW.instance.player.transform.position.x == transform.position.x || !follow)
                     horizontalSpeed = 0f; 
+                else if(GameManagerSW.instance.player.transform.position.x > transform.position.x)
+                    horizontalSpeed = 1f;
+                else if(GameManagerSW.instance.player.transform.position.x < transform.position.x)
+                    horizontalSpeed = -1f; 
                 GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
             } 
             else //Para os demais: andar de um lado para o outro
@@ -84,9 +85,14 @@ public class EnemySW : MonoBehaviour
             //Quando a vida do inimigo fica sem vida
             if(health <= 0)
             {
-                GameManagerSW.instance.AddPoints(points);
+                bool spawnSuply = GameManagerSW.instance.AddPoints(points);
                 GameObject explosion = Instantiate(explosionEffect, transform.parent);
                 explosion.transform.position = transform.position;
+                if(spawnSuply)
+                {
+                    GameObject suply = Instantiate(suplyEffect, transform.parent);
+                    suply.transform.position = transform.position;
+                }
                 Destroy(explosion, 3);
                 Destroy(this.gameObject);
             }
