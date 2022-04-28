@@ -64,6 +64,7 @@ public class PlayerSW : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage; 
+        if(health>100f) health = 100f; 
     }
 
     void OnTriggerEnter(Collider other)
@@ -76,7 +77,7 @@ public class PlayerSW : MonoBehaviour
             hit.transform.position = transform.position; 
         }
 
-        if(other.tag == "Suply")
+        if(other.tag == "Suply") 
         {
             TakeDamage(-25f);
             Destroy(other.gameObject);
