@@ -75,5 +75,11 @@ public class PlayerSW : MonoBehaviour
             GameObject hit = Instantiate(hitEffect,transform);
             hit.transform.position = transform.position; 
         }
+
+        if(other.tag == "Suply")
+        {
+            TakeDamage(-25f);
+            Destroy(other.gameObject);
+        }
     }
 }
