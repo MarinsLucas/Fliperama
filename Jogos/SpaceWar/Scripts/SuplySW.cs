@@ -9,4 +9,10 @@ public class SuplySW : MonoBehaviour
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0f, -verticalSpeed, 0f);
     }
+
+    void Update()
+    {
+        if(transform.position.y <= -6.4f)
+            Destroy(this.gameObject);
+    }
 }
