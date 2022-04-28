@@ -12,6 +12,7 @@ public class EnemySW : MonoBehaviour
     [SerializeField] float horizontalSpeed; 
     [SerializeField] float verticalSpeed; 
     [SerializeField] float horizontalLimit;
+    float verticalLimit = -6.4f; 
     [SerializeField] float offset; 
     [SerializeField] projectileSW projectile;
     float shootTimer; 
@@ -89,6 +90,13 @@ public class EnemySW : MonoBehaviour
                 Destroy(explosion, 3);
                 Destroy(this.gameObject);
             }
+
+            //quando o inimigo chegar no limite inferior da tela
+            if(transform.position.y < verticalLimit)
+            {
+                Destroy(this.gameObject);
+                Destroy(GameManagerSW.instance.player.gameObject);
+            }
         }
     }
 
@@ -150,3 +158,5 @@ public class EnemySW : MonoBehaviour
         }
     }
 }
+
+//FIXME: quando os kamikase se encontram eles param de seguir para sempre
