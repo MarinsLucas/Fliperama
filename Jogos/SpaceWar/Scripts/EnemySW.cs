@@ -164,5 +164,3 @@ public class EnemySW : MonoBehaviour
         }
     }
 }
-
-//FIXME: quando os kamikase se encontram eles param de seguir para sempre
