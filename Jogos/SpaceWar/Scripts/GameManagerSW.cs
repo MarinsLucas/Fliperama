@@ -63,4 +63,14 @@ public class GameManagerSW : MonoBehaviour
         scoreText.text = score.ToString();
         healthText.text = player.health.ToString();
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+
+    }
 }
