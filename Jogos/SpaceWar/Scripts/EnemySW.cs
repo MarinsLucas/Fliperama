@@ -124,7 +124,7 @@ public class EnemySW : MonoBehaviour
             Destroy(other.gameObject);
         }
         //contato com o jogador
-        if(other.tag == "Player")
+        else if(other.tag == "Player")
         {
             if(!kamikase) //se não for kamikase: gameover
             {
@@ -141,7 +141,7 @@ public class EnemySW : MonoBehaviour
             Destroy(explosion, 3);
         }  
         //contato entre inimigos
-        if(other.tag == "EnemySW" && !kamikase)
+        else if(other.tag == "EnemySW" && !kamikase)
         {
             horizontalSpeed *= -1;
             GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
