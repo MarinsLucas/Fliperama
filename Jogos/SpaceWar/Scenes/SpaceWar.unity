@@ -605,6 +605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f87b6641442b4429843b14252e1f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intervalTimeChange: 10
+  timeIncrease: 0.05
   inGamePanel: {fileID: 2045974321}
   restartPanel: {fileID: 353488611}
   healthText: {fileID: 1233717153}

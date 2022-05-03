@@ -17,10 +17,7 @@ public class EnemySW : MonoBehaviour
     [SerializeField] float offset; 
     [SerializeField] projectileSW projectile;
     float shootTimer; 
-<<<<<<< HEAD
     float constHorizontalSpeed;  
-=======
->>>>>>> 0ffa55f7cb82d1b082819d420e4a55740944e4ff
 
     [Header("Parametros")]
     [SerializeField] float health;
