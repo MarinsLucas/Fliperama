@@ -17,7 +17,7 @@ public class EnemySW : MonoBehaviour
     [SerializeField] float offset; 
     [SerializeField] projectileSW projectile;
     float shootTimer; 
-    float constHorizontalSpeed; 
+    float constHorizontalSpeed;  
 
     [Header("Parametros")]
     [SerializeField] float health;
@@ -150,17 +150,4 @@ public class EnemySW : MonoBehaviour
             GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
         }
     }
-    //Analisando contato entre kamikases
-    /* void OnTriggerStay(Collider other) {
-        if(other.tag == "EnemySW" && kamikase)
-        {
-            follow = false;
-        }
-    }
-    void OnTriggerExit(Collider other) {
-        if(other.tag == "EnemySW" && kamikase)
-        {
-            follow = true;
-        }
-    } */
 }

@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerSW : MonoBehaviour
 {
+    [Header("Parametros")]
+    [SerializeField] float intervalTimeChange;
+    [SerializeField] float timeIncrease; 
+    float timeChange;
+
     [Header("Canvas")]
     [SerializeField] GameObject inGamePanel;
     [SerializeField] GameObject restartPanel;
@@ -32,6 +37,7 @@ public class GameManagerSW : MonoBehaviour
         restartPanel.SetActive(!isRunning);
         inGamePanel.SetActive(isRunning);
         Time.timeScale = 1f; 
+        timeChange = intervalTimeChange; 
     }
 
     public void GameOver()
@@ -63,6 +69,15 @@ public class GameManagerSW : MonoBehaviour
         
         scoreText.text = score.ToString();
         healthText.text = player.health.ToString();
+
+        //aumenta a dificuldade do jogo
+        if(timeChange<=0)
+        {  
+            Time.timeScale += timeIncrease;
+            timeChange = intervalTimeChange;
+            Debug.Log("Aumento de dificuldade");
+        }
+        timeChange -= Time.deltaTime; 
     }
 
     public void Restart()
@@ -72,6 +87,5 @@ public class GameManagerSW : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
-
     }
 }
