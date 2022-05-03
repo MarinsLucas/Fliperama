@@ -17,7 +17,10 @@ public class EnemySW : MonoBehaviour
     [SerializeField] float offset; 
     [SerializeField] projectileSW projectile;
     float shootTimer; 
+<<<<<<< HEAD
     float constHorizontalSpeed;  
+=======
+>>>>>>> 0ffa55f7cb82d1b082819d420e4a55740944e4ff
 
     [Header("Parametros")]
     [SerializeField] float health;
@@ -25,7 +28,6 @@ public class EnemySW : MonoBehaviour
 
     [Header("Caracteristicas")]
     [SerializeField] bool shoot;
-    [SerializeField] bool follow; 
     [SerializeField] bool kamikase;
 
     // Start is called before the first frame update
@@ -34,7 +36,6 @@ public class EnemySW : MonoBehaviour
         GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
         if(shoot)
             shootTimer = projectile.shootCooldown;
-        constHorizontalSpeed = horizontalSpeed;
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class EnemySW : MonoBehaviour
             //Para o Kamikase: seguir o personagem
             if(GameManagerSW.instance.player != null && kamikase)
             {
-                if(GameManagerSW.instance.player.transform.position.x == transform.position.x || !follow)
+                if(GameManagerSW.instance.player.transform.position.x == transform.position.x)
                     horizontalSpeed = 0f; 
                 else if(GameManagerSW.instance.player.transform.position.x > transform.position.x)
                     horizontalSpeed = 1f;
@@ -127,7 +128,7 @@ public class EnemySW : MonoBehaviour
             Destroy(other.gameObject);
         }
         //contato com o jogador
-        if(other.tag == "Player")
+        else if(other.tag == "Player")
         {
             if(!kamikase) //se não for kamikase: gameover
             {
@@ -144,7 +145,7 @@ public class EnemySW : MonoBehaviour
             Destroy(explosion, 3);
         }  
         //contato entre inimigos
-        if(other.tag == "EnemySW" && !kamikase)
+        else if(other.tag == "EnemySW" && !kamikase)
         {
             horizontalSpeed *= -1;
             GetComponent<Rigidbody>().velocity = new Vector3(horizontalSpeed, -verticalSpeed, 0f);
