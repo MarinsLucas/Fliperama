@@ -11,7 +11,8 @@ public class PlayerMastiga : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        direction =  new Vector3(speed, 0f, 0f);
+        GetComponent<Rigidbody>().velocity = direction; 
     }
 
     // Update is called once per frame
@@ -19,20 +20,27 @@ public class PlayerMastiga : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.D))
             direction =  new Vector3(speed, 0f, 0f);
-        else if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.A))
             direction = new Vector3(-speed, 0f, 0f);
-        else if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.W))
             direction = new Vector3(0f,0f,speed);
-        else if(Input.GetKeyDown(KeyCode.S))
+        if(Input.GetKeyDown(KeyCode.S))
             direction = new Vector3(0f,0f,-speed);
-        GetComponent<Rigidbody>().velocity = direction;      
     }
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag=="Wall")
+        /* if(other.gameObject.tag=="Wall")
         {
             direction = Vector3.zero; 
+        } */
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "changeDirectionMastigaCome")
+        {
+            GetComponent<Rigidbody>().velocity = direction; 
         }
     }
 }
